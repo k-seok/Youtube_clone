@@ -21,7 +21,7 @@ public class VideoInfo {
         this.createTime = createTime;
     }
 
-    private VideoInfo() {
+    protected VideoInfo() {
 
     }
 }
