@@ -1,6 +1,8 @@
 package kiseok.youtube_clone.domain;
 
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -8,12 +10,12 @@ import java.util.List;
 
 @Getter
 @Entity
+@NoArgsConstructor
 public class Video {
     @Id
     @GeneratedValue
     @Column(name = "video_id")
     private Long id;
-    private String name;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "channel_id")
@@ -22,11 +24,20 @@ public class Video {
     @Embedded
     private VideoInfo videoInfo;
 
-    @OneToMany(mappedBy = "video")
-    private List<Comment> comments= new ArrayList<>();
+    @Builder
+    public Video(Long id, Channel channel, VideoInfo videoInfo) {
+        this.id = id;
+        this.channel = channel;
+        this.videoInfo = videoInfo;
+    }
 
-    @Enumerated(EnumType.STRING)
-    private VideoStatus videoStatus;
-    @Enumerated(EnumType.STRING)
-    private VideoType videoType;
+    @OneToMany(mappedBy = "video")
+    private List<Comment> comments = new ArrayList<>();
+
+//    @Enumerated(EnumType.STRING)
+//    private VideoStatus videoStatus;
+//    @Enumerated(EnumType.STRING)
+//    private VideoType videoType;
+
+
 }
