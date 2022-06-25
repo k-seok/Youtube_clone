@@ -16,7 +16,7 @@ public class VideoInfo {
 
     private String title;
     private String description;
-    private Long like = 0L;
+    private Long _like = 0L;
     private Long dislike = 0L;
     private Long views = 0L;
 

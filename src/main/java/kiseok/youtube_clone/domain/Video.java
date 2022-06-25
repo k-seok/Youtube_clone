@@ -10,7 +10,6 @@ import java.util.List;
 
 @Getter
 @Entity
-@NoArgsConstructor
 public class Video {
     @Id
     @GeneratedValue
@@ -21,18 +20,31 @@ public class Video {
     @JoinColumn(name = "channel_id")
     private Channel channel;
 
-    @Embedded
-    private VideoInfo videoInfo;
+//    @Embedded
+//    private VideoInfo videoInfo;
+//
+//    @Builder
+//
+//    public void setVideo(VideoInfo videoInfo) {
+////        this.channel = channel;
+//        this.videoInfo = videoInfo;
+//    }
 
-    @Builder
-    public Video(Long id, Channel channel, VideoInfo videoInfo) {
-        this.id = id;
-        this.channel = channel;
-        this.videoInfo = videoInfo;
+
+    private String title;
+    private String description;
+    private String fileUrl;
+
+    public void setVideo(String title, String description, String fileUrl) {
+        this.title = title;
+        this.description = description;
+        this.fileUrl = fileUrl;
     }
+
 
     @OneToMany(mappedBy = "video")
     private List<Comment> comments = new ArrayList<>();
+
 
 //    @Enumerated(EnumType.STRING)
 //    private VideoStatus videoStatus;

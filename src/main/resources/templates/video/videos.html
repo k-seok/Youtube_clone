@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Videos</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+
+
+<tr th:each="video : ${videos}">
+    <a th:href="${video.fileUrl}" target="_blank">
+    <td th:text="${video.title}"></td>
+    <td th:text="${video.description}"></td>
+    <td th:text="${video.fileUrl}"></td>
+    </a>
+    <br>
+</tr>
+<button>
+    <a href="/videos/new">New Video</a>
+</button>
+</body>
+</html>
